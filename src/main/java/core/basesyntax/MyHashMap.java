@@ -4,6 +4,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     private static final int initialCapacity = 16;
     private static final int sizeMultiplier = 2;
     private static final double loadFactor = 0.75;
+    private static final int hashMask = 0x7fffffff;
     private int currentMaxSize = initialCapacity;
     private int threshold = (int) (initialCapacity * loadFactor);
     private Node<K, V>[] buckets;
@@ -131,7 +132,6 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         }
 
         int hash = key.hashCode();
-        int hashMask = 0x7fffffff;
         return (hash & hashMask) % currentMaxSize;
     }
 
