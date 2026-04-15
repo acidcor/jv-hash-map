@@ -131,8 +131,8 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         }
 
         int hash = key.hashCode();
-        int HASH_MASK = 0x7fffffff;
-        return (hash & HASH_MASK) % currentMaxSize;
+        int hashMask = 0x7fffffff;
+        return (hash & hashMask) % currentMaxSize;
     }
 
     private static class Node<K, V> {
