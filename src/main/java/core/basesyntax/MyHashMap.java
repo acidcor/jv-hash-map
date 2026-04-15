@@ -4,7 +4,6 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     private static final int initialCapacity = 16;
     private static final int sizeMultiplier = 2;
     private static final double loadFactor = 0.75;
-    static final int HASH_MASK = 0x7fffffff;
     private int currentMaxSize = initialCapacity;
     private int threshold = (int) (initialCapacity * loadFactor);
     private Node<K, V>[] buckets;
@@ -13,7 +12,6 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     public MyHashMap() {
         buckets = new Node[initialCapacity];
     }
-
 
     @Override
     public void put(K key, V value) {
@@ -133,9 +131,9 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         }
 
         int hash = key.hashCode();
+        int HASH_MASK = 0x7fffffff;
         return (hash & HASH_MASK) % currentMaxSize;
     }
-
 
     private static class Node<K, V> {
         private final K key;
